@@ -2,6 +2,7 @@
 
 import itertools
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -15,6 +16,9 @@ except ModuleNotFoundError:  # Python < 3.11
     import tomli as tomllib
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+# rich reads the width when confconv is imported; a wide terminal keeps it from
+# wrapping long temp paths in the middle of the messages asserted on below.
+os.environ["COLUMNS"] = "500"
 
 import confconv  # noqa: E402
 
@@ -33,8 +37,7 @@ EXT = {"json": ".json", "yaml": ".yaml", "toml": ".toml", "csv": ".csv"}
 
 
 def run(*args):
-    # A wide terminal keeps rich from wrapping long temp paths mid-message.
-    return CliRunner().invoke(confconv.cli, [str(a) for a in args], env={"COLUMNS": "500"})
+    return CliRunner().invoke(confconv.cli, [str(a) for a in args])
 
 
 def load(path: Path):
