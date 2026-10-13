@@ -33,7 +33,8 @@ EXT = {"json": ".json", "yaml": ".yaml", "toml": ".toml", "csv": ".csv"}
 
 
 def run(*args):
-    return CliRunner().invoke(confconv.cli, [str(a) for a in args])
+    # A wide terminal keeps rich from wrapping long temp paths mid-message.
+    return CliRunner().invoke(confconv.cli, [str(a) for a in args], env={"COLUMNS": "500"})
 
 
 def load(path: Path):
