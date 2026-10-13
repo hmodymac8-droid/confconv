@@ -5,12 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "confconv"
 dynamic = ["version"]
-description = "Convert configuration files between JSON, YAML, TOML and CSV, with validation and a rich preview."
+description = "Convert configuration files between JSON, YAML, TOML, CSV, INI, XML and SQL, with validation and a rich preview."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.9"
-keywords = ["config", "converter", "json", "yaml", "toml", "csv", "cli"]
+keywords = ["config", "converter", "json", "yaml", "toml", "csv", "ini", "xml", "sql", "cli"]
 classifiers = [
     "Environment :: Console",
     "Programming Language :: Python :: 3",
