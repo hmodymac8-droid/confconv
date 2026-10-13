@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "confconv"
+dynamic = ["version"]
+description = "Convert configuration files between JSON, YAML, TOML and CSV, with validation and a rich preview."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+keywords = ["config", "converter", "json", "yaml", "toml", "csv", "cli"]
+classifiers = [
+    "Environment :: Console",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "click>=8.1",
+    "pydantic>=2.5",
+    "rich>=13.0",
+    "PyYAML>=6.0",
+    "tomli-w>=1.0",
+    "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+confconv = "confconv:main"
+
+[tool.setuptools]
+py-modules = ["confconv"]
+
+[tool.setuptools.dynamic]
+version = { attr = "confconv.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
